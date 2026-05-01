@@ -6,7 +6,7 @@ import uuid, os, re, asyncio
 
 app = FastAPI()
 
-✅ CORS (important for frontend)
+CORS (important for frontend)
 
 app.add_middleware(
 CORSMiddleware,
@@ -19,33 +19,33 @@ allow_headers=["*"],
 TMP = "tmp"
 os.makedirs(TMP, exist_ok=True)
 
-🎙️ Voices
+Voices
 
 VOICE_MAP = {
 "male": "en-US-GuyNeural",
 "female": "en-US-AriaNeural"
 }
 
-🧹 Clean SRT
+Clean SRT
 
 def clean_srt(text):
 text = re.sub(r'\d+\n', '', text)
 text = re.sub(r'\d{2}:\d{2}:\d{2},\d{3} --> .*', '', text)
 return text.strip()
 
-✂️ Split text
+Split text
 
 def split_text(text, size=500):
 return [text[i:i+size] for i in range(0, len(text), size)]
 
-🔊 Generate voice (fixed)
+Generate voice (fixed)
 
 async def generate_voice(text, voice):
 file_path = os.path.join(TMP, f"{uuid.uuid4()}.mp3")
 
 communicate = edge_tts.Communicate(text, voice)  
 
-# 🔥 stream audio manually (fix 0:00 bug)  
+# stream audio manually (fix 0:00 bug)  
 with open(file_path, "wb") as f:  
     async for chunk in communicate.stream():  
         if chunk["type"] == "audio":  
@@ -57,7 +57,7 @@ if os.path.getsize(file_path) < 2000:
 
 return file_path
 
-🔁 Retry system
+Retry system
 
 async def safe_tts(text, voice):
 for i in range(3):
@@ -68,7 +68,7 @@ print("Retry:", i, e)
 await asyncio.sleep(1)
 raise Exception("TTS failed after retries")
 
-📝 TEXT → VOICE
+TEXT → VOICE
 
 @app.post("/text")
 async def text_to_voice(
@@ -84,14 +84,14 @@ for c in chunks:
     f = await safe_tts(c, voice_id)  
     files.append(f)  
 
-# 👉 MVP: return first chunk  
+# MVP: return first chunk  
 return FileResponse(  
     files[0],  
     media_type="audio/mpeg",  
     filename="voice.mp3"  
 )
 
-📂 SRT → VOICE
+SRT → VOICE
 
 @app.post("/srt")
 async def srt_to_voice(
