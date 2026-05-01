@@ -20,10 +20,28 @@ os.makedirs(TMP, exist_ok=True)
 
 # 🎙️ Voices
 VOICE_MAP = {
-    "male": "en-US-GuyNeural",
-    "female": "en-US-AriaNeural"
+     "km": {"male": "km-KH-PisethNeural", "female": "km-KH-SreymomNeural"},
+    "en": {"male": "en-US-AndrewNeural", "female": "en-US-AvaNeural"},
+    "zh": {"male": "zh-CN-YunxiNeural", "female": "zh-CN-XiaoxiaoNeural"},
+    "ja": {"male": "ja-JP-KeitaNeural", "female": "ja-JP-NanamiNeural"},
+    "ko": {"male": "ko-KR-InJunNeural", "female": "ko-KR-SunHiNeural"},
+    "th": {"male": "th-TH-NiwatNeural", "female": "th-TH-PremwadeeNeural"},
+    "vi": {"male": "vi-VN-NamMinhNeural", "female": "vi-VN-HoaiMyNeural"},
+    "lo": {"male": "lo-LA-ChanthavongNeural", "female": "lo-LA-KeotaNeural"},
+    "my": {"male": "my-MM-ThihaNeural", "female": "my-MM-NilarNeural"},
+    "tl": {"male": "fil-PH-AngeloNeural", "female": "fil-PH-BlessicaNeural"},
+    "ms": {"male": "ms-MY-OsmanNeural", "female": "ms-MY-YasminNeural"},
+    "id": {"male": "id-ID-ArdiNeural", "female": "id-ID-GadisNeural"},
+    "br": {"male": "ms-MY-OsmanNeural", "female": "ms-MY-YasminNeural"},
+    "bn": {"male": "bn-BD-PradeepNeural", "female": "bn-BD-NabanitaNeural"},
+    "hi": {"male": "hi-IN-MadhurNeural", "female": "hi-IN-SwaraNeural"},
+    "ar": {"male": "ar-SA-HamedNeural", "female": "ar-SA-ZariyahNeural"},
+    "pt": {"male": "pt-PT-DuarteNeural", "female": "pt-PT-RaquelNeural"},
+    "fr": {"male": "fr-FR-HenriNeural", "female": "fr-FR-DeniseNeural"},
+    "de": {"male": "de-DE-ConradNeural", "female": "de-DE-KatjaNeural"},
+    "es": {"male": "es-ES-AlvaroNeural", "female": "es-ES-ElviraNeural"},
+    "ru": {"male": "ru-RU-DmitryNeural", "female": "ru-RU-SvetlanaNeural"}
 }
-
 # 🧹 Clean SRT
 def clean_srt(text):
     text = re.sub(r'\d+\n', '', text)
