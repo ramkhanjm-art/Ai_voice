@@ -21,7 +21,9 @@ os.makedirs(TMP, exist_ok=True)
 # Voices
 VOICE_MAP = {
     "male": "en-US-GuyNeural",
-    "female": "en-US-AriaNeural"
+    "female": "en-US-AriaNeural",
+"male": "km-KH-PisethNeural",
+"female": "km-KH-SreymomNeural"
 }
 
 # Clean SRT
