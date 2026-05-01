@@ -79,10 +79,9 @@ async def safe_tts(text, voice):
 @app.post("/text")
 async def text_to_voice(
     text: str = Form(...),
-    voice: str = Form("male")
+    language: str = Form("en")
 ):
-    voice_id = VOICE_MAP.get(voice, VOICE_MAP["male"])
-
+    voice_id = get_voice(language)
     chunks = split_text(text)
     files = []
 
@@ -101,12 +100,12 @@ async def text_to_voice(
 @app.post("/srt")
 async def srt_to_voice(
     file: UploadFile = File(...),
-    voice: str = Form("male")
+    language: str = Form("en")
 ):
     content = (await file.read()).decode("utf-8", errors="ignore")
     text = clean_srt(content)
 
-    voice_id = VOICE_MAP.get(voice, VOICE_MAP["male"])
+    voice_id = get_voice(language)
     chunks = split_text(text)
 
     files = []
