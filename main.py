@@ -39,20 +39,18 @@ async def generate_voice(text, voice):
     file_path = os.path.join(TMP, f"{uuid.uuid4()}.mp3")
 
     communicate = edge_tts.Communicate(text, voice)
-    await communicate.save(file_path)
 
-    # 🛑 wait for file write
-    await asyncio.sleep(0.5)
+    # 🔥 stream audio manually (fix 0:00 bug)
+    with open(file_path, "wb") as f:
+        async for chunk in communicate.stream():
+            if chunk["type"] == "audio":
+                f.write(chunk["data"])
 
-    # ❗ validate file
-    if not os.path.exists(file_path):
-        raise Exception("File not created")
-
+    # validate
     if os.path.getsize(file_path) < 2000:
-        raise Exception("Audio too small (failed)")
+        raise Exception("Audio broken")
 
     return file_path
-
 # 🔁 Retry system
 async def safe_tts(text, voice):
     for i in range(3):
