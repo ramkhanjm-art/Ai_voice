@@ -19,9 +19,24 @@ TMP = "tmp"
 os.makedirs(TMP, exist_ok=True)
 
 # 🎙️ Voices
-VOICE_MAP = {
-"male": "en-US-GuyNeural",
-    "female": "en-US-AriaNeural"
+LANG_MAP = {
+    "en": "en-US-AriaNeural",
+
+    "km": "km-KH-VoiceNeural",
+    "lo": "lo-LA-VoiceNeural",
+
+    "th": "th-TH-PremwadeeNeural",
+    "vi": "vi-VN-HoaiMyNeural",
+    "id": "id-ID-GadisNeural",
+    "ms": "ms-MY-YasminNeural",
+    "ja": "ja-JP-NanamiNeural",
+    "ko": "ko-KR-SunHiNeural",
+    "zh": "zh-CN-XiaoxiaoNeural",
+    "ru": "ru-RU-SvetlanaNeural",
+    "ar": "ar-SA-ZariyahNeural",
+    "hi": "hi-IN-SwaraNeural",
+    "fil": "fil-PH-AngeloNeural",
+    "pt": "pt-BR-FranciscaNeural"
 }
 # 🧹 Clean SRT
 def clean_srt(text):
